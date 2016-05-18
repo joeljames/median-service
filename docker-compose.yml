@@ -1,0 +1,13 @@
+db:
+  image: mongo:3.0
+
+web:
+  extends:
+    file: docker-compose-base.yml
+    service: web
+  ports:
+    - "8000:8000"
+  links:
+    - db
+  environment:
+    VIRTUAL_HOST: median.docker
