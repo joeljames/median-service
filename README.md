@@ -30,6 +30,7 @@ The app processes (database and web) are defined within `docker-compose-base.yml
 
 Below are the steps to build and get the container up and running.
 
+A list of make commands are available for managing tasks. You can view the list by running `make help` command.
 
 1. Build the image:
 
@@ -44,3 +45,13 @@ Below are the steps to build and get the container up and running.
     ```
 
 3. Check the server is up and running by hitting the url `http://median.docker/`.
+
+
+## Running Tests
+All modules have tests written.
+
+1. Running tests with coverage
+
+    ``` bash
+    $ docker-compose run web make test
+    ```
