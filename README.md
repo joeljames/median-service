@@ -38,13 +38,19 @@ A list of make commands are available for managing tasks. You can view the list 
     $ docker-compose build
     ```
 
-2. Start the server:
+2. Seed the database with fixtures:
+
+    ``` bash
+    $ docker-compose run web make seed_db
+    ```
+
+3. Start the server:
 
     ``` bash
     $ docker-compose up
     ```
 
-3. Check the server is up and running by hitting the url `http://median.docker/`.
+4. Check the server is up and running by hitting the url `http://median.docker/`.
 
 
 ## Running Tests
