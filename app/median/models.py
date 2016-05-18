@@ -13,7 +13,8 @@ class Value(me.Document):
     created_at = me.DateTimeField(required=True, default=utc_now)
 
     meta = {
-        'collection': 'value'
+        'collection': 'value',
+        'ordering': ['+value']
     }
 
     def __repr__(self):

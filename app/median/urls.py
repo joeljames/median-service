@@ -8,6 +8,7 @@ from __future__ import absolute_import
 from flask import Blueprint
 
 from app.median.views import (
+    ValueView,
     MedianView,
 )
 
@@ -25,13 +26,14 @@ mod_median = Blueprint(
 )
 
 
-# Add the routing. Calls the `MedianView` when the user access the root
+# Adds the routing. Calls the `ValueView` when the user access the root
 mod_median.add_url_rule(
     '/',
-    view_func=MedianView.as_view('median_update')
+    view_func=ValueView.as_view('value_update')
 )
 
+# Adds the routing. Calls the `MedianView` when the user access the `/median`
 mod_median.add_url_rule(
-    '/median',
+    'median',
     view_func=MedianView.as_view('median_detail')
 )

@@ -18,12 +18,13 @@ from app.shared.responses import (
 
 
 __all__ = [
+    'ValueView',
     'MedianView',
 ]
 
 
-class MedianView(MethodView,
-                 RepositoryMixin):
+class ValueView(MethodView,
+                RepositoryMixin):
 
     repository_class = ValueRepository
 
@@ -31,14 +32,6 @@ class MedianView(MethodView,
                  logger=None):
         super().__init__()
         self.logger = logger or get_logger('views')
-
-    def get(self):
-        """
-        Handles the GET request.
-        """
-        return jsonify(
-            dict(message='Hi')
-        ), status.HTTP_200_OK
 
     def put(self):
         """
@@ -68,3 +61,25 @@ class MedianView(MethodView,
                 description='The input field contained invalid data',
                 errors=form.errors
             )
+
+
+class MedianView(MethodView,
+                 RepositoryMixin):
+
+    repository_class = ValueRepository
+
+    def __init__(self,
+                 logger=None):
+        super().__init__()
+        self.logger = logger or get_logger('views')
+
+    def get(self):
+        """
+        Handles the GET request.
+        Returns the median value for all the objects created in
+        past 1 minute.
+        """
+        median = self.repository.calculate_median()
+        return jsonify(
+            dict(median=median)
+        ), status.HTTP_200_OK
