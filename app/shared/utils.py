@@ -7,6 +7,7 @@ import config
 __all__ = [
     'get_config',
     'utc_now',
+    'MultiDict',
 ]
 
 
@@ -24,3 +25,11 @@ def utc_now():
     """
     d = datetime.utcnow()
     return d.replace(tzinfo=pytz.UTC)
+
+
+class MultiDict(dict):
+    def getlist(self, key):
+        return self[key] if type(self[key]) == list else [self[key]]
+
+    def __repr__(self):
+        return type(self).__name__ + '(' + dict.__repr__(self) + ')'
