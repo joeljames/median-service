@@ -28,5 +28,10 @@ mod_median = Blueprint(
 # Add the routing. Calls the `MedianView` when the user access the root
 mod_median.add_url_rule(
     '/',
+    view_func=MedianView.as_view('median_update')
+)
+
+mod_median.add_url_rule(
+    '/median',
     view_func=MedianView.as_view('median_detail')
 )

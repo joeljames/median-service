@@ -35,6 +35,7 @@ Below are the steps to build and get the container up and running.
 
     ``` bash
     $ docker-compose build
+    ```
 
 2. Start the server:
 

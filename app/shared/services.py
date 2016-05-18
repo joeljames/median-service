@@ -1,11 +1,15 @@
 import logging
 import sys
 
+import mongoengine
+
 from app.shared.utils import get_config
+from app.shared.decorators import singleton
 
 
 __all__ = [
     'get_logger',
+    'get_mongo_connection',
 ]
 
 
@@ -29,3 +33,14 @@ def get_logger(name):
         logger.setLevel(get_config('LOGGING_LEVEL'))
         logger.propagate = False
     return logger
+
+
+@singleton
+def get_mongo_connection(url=None, collection=None):
+    """
+    Factory method for returning the mongoengine connection configured for
+    the current environment.
+    """
+    db_url = url or get_config('DATABASE_URL')
+    collection = collection or 'value'
+    return mongoengine.connect('value', host=db_url)
