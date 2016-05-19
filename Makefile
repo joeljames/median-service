@@ -5,6 +5,7 @@ help:
 	@echo "  test            Runs unit tests and coverage."
 	@echo "  seed_db         Reseed the database."
 	@echo "  lint            Lint all project files."
+	@echo "  link_hooks      Installs all git hooks stored in 'bin/hooks'."
 
 .PHONY: test
 test:
@@ -14,7 +15,10 @@ test:
 seed_db:
 	@bin/seed_db
 
-
 .PHONY: lint
 lint:
 	@bin/lint
+
+.PHONY: link_hooks
+link_hooks:
+	@bin/link_hooks

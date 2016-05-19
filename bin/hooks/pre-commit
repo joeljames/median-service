@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Pre commit hook that prevents code from being commited if linting fails, unit tests fails or if code has break points.
+
+echo "Running lint (flake8) on the project....."
+make lint
+LINT_RESULT=$?
+
+if [ $LINT_RESULT != 0 ]; then
+    echo "$(tput setaf 1)COMMIT REJECTED Linting failed. Please fix before committing.$(tput sgr0)"
+    exit 1
+fi
+
+echo "Running unit tests....."
+docker-compose run web make test
+TEST_RESULT=$?
+
+if [ $TEST_RESULT != 0 ]; then
+    echo "$(tput setaf 1)COMMIT REJECTED tests failed. Please fix before committing.$(tput sgr0)"
+    exit 1
+fi
+
+echo "Checking for code break points....."
+INCLUDE_PATTERN="*.py"
+BASE_DIR="."
+grep -n -r --include=$INCLUDE_PATTERN -E "import pdb|set_trace" $BASE_DIR
+GREP_RESULT=$?
+
+if [ $GREP_RESULT == 0 ]; then
+    echo "$(tput setaf 1)COMMIT REJECTED Found code break point references. Please remove them before committing.$(tput sgr0)"
+    exit 1
+fi
+
+exit 0

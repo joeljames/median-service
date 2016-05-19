@@ -53,6 +53,15 @@ A list of make commands are available for managing tasks. You can view the list 
 4. Check the server is up and running by hitting the url `http://median.docker/median`.
 
 
+## Link Git Hooks
+I use pre-commit hook which runs lint, runs tests and checks for code breakpoint before committing. This ensures that only clean code is checked in.
+
+1. Add pre-commit hooks
+
+    ``` bash
+    $ make link_hooks
+    ```
+
 ## Running Tests
 All modules have tests written.
 
