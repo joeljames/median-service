@@ -4,6 +4,7 @@ help:
 
 	@echo "  test            Runs unit tests and coverage."
 	@echo "  seed_db         Reseed the database."
+	@echo "  lint            Lint all project files."
 
 .PHONY: test
 test:
@@ -12,3 +13,8 @@ test:
 .PHONY: seed_db
 seed_db:
 	@bin/seed_db
+
+
+.PHONY: lint
+lint:
+	@bin/lint

@@ -62,6 +62,21 @@ All modules have tests written.
     $ docker-compose run web make test
     ```
 
+## Running Lints
+Checks to make sure that the code written are asper pep8, pyflakes standards
+
+1. Install flake8
+
+    ``` bash
+    $ sudo pip3 install flake8
+    ```
+
+2. Run Lint
+
+    ``` bash
+    $ make lint
+    ```
+
 ## API Documentation
 This app opens up two endpoints
 
