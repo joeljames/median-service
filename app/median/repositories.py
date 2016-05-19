@@ -43,7 +43,8 @@ class ValueRepository:
     def calculate_median(self,
                          minutes=1):
         """
-        Calculates the median all values in the collection after now - minutes
+        Calculates the median of all values in the collection
+        after (now - minutes)
         """
         now = utc_now()
         created_after = now - timedelta(minutes=1)
