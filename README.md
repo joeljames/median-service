@@ -50,7 +50,7 @@ A list of make commands are available for managing tasks. You can view the list 
     $ docker-compose up
     ```
 
-4. Check the server is up and running by hitting the url `http://median.docker/`.
+4. Check the server is up and running by hitting the url `http://median.docker/median`.
 
 
 ## Running Tests
@@ -60,4 +60,52 @@ All modules have tests written.
 
     ``` bash
     $ docker-compose run web make test
+    ```
+
+## API Documentation
+This app opens up two endpoints
+
+1. PUT `http://median.docker` which takes in an integer
+
+    ```
+    GET http://median.docker
+
+    Request:
+
+    Body:
+        {
+            "value": 3
+        }
+
+
+    Response:
+        201
+
+    Headers:
+        Content-Type: application/json
+
+    Body:
+        {
+            "message": "Value successfully created.",
+            "status": 201
+        }
+    ```
+
+
+2. GET `http://median.docker/median`  returns the median for all the values for the last minute
+
+    ```
+    GET http://median.docker/median
+
+    Response:
+        200
+
+    Headers:
+        Content-Type: application/json
+
+    Body:
+
+        {
+            "median": 3
+        }
     ```
