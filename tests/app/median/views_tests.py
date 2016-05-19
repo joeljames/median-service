@@ -1,4 +1,4 @@
-from nose.tools import assert_equal, set_trace
+from nose.tools import assert_equal
 
 from mock import Mock, patch, DEFAULT
 
