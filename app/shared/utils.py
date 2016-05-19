@@ -1,3 +1,4 @@
+import six
 from datetime import datetime
 
 import pytz
@@ -8,6 +9,7 @@ __all__ = [
     'get_config',
     'utc_now',
     'MultiDict',
+    'force_str',
 ]
 
 
@@ -33,3 +35,13 @@ class MultiDict(dict):
 
     def __repr__(self):
         return type(self).__name__ + '(' + dict.__repr__(self) + ')'
+
+
+def force_str(value, encoding='utf-8'):
+    """
+    Forces the value to a str instance, decoding if necessary.
+    """
+    if six.PY3 and isinstance(value, bytes):
+        return str(value, encoding)
+    else:
+        return value
