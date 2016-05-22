@@ -92,7 +92,7 @@ This app opens up two endpoints
 1. PUT `http://median.docker` which takes in an integer
 
     ```
-    GET http://median.docker
+    PUT http://median.docker
 
     Request:
 
